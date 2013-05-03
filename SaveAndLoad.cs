@@ -8,8 +8,29 @@ using System.IO;
 // This save/load module uses the Newtonsoft Json library (http://james.newtonking.com/projects/json-net.aspx)
 // to serialize and deserialize the SavingsAccount objects into Json text, and back into objects again.
 
+// The purpose of this class is to give beginners to C# an easy way to save and load objects.  It can save and 
+// load any List<T> of objects that have properties that can be get and set.  It will ignore saving properties 
+// that aren't gettable, and ignore restoring properties that aren't settable.
 
-namespace Assignment1
+// To use, add the class to your project.  Then make a SaveAndLoad object, passing in as a parameter the name of
+// the file you would like to save to.  
+// e.g. SaveAndLoad save = new SaveAndLoad("myfile.txt");  
+// Then use the Save<T>() and Load<T>() methods to save and load your data.  So if I wanted to save a List<T> of 
+// Customer objects called customerList using the SaveAndLoad object from the example, I would write 
+// save.Save<Customer>(customerList);
+// Likewise, to load that list into an initialized List<Customer> called newList, I would write 
+// save.Load<Customer>(newList);
+// As you can see, the generic type T in the save and load methods is replaced by the type of the object in your
+// list of objects.  You *must* pass in a list of the correct type of objects, and you can only save one object
+// type at a time.
+
+// If you're not familiar with JSON, you should check out the output of the save method.  JSON is cool because it's
+// human-readable, and the output file can be easily edited using a text editor.  Check out my other repo:
+// https://github.com/emotecontrol/ConsoleBankingApp, to see how I first used this class when I wrote it for a
+// school assignment.
+
+
+namespace SampleNameSpace
 {
     class SaveAndLoad
     {
